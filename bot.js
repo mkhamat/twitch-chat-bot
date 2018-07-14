@@ -30,8 +30,7 @@ function interval(){
         if (client.readyState() == 'OPEN' || client.readyState() == 'CONNECTING') return;
         client.connect();
         interval();
-        client.on("chat", function (channel, userstate, message, self) {
-          if (self) return;
+        client.on("chat", function (channel, userstate, message) {
           bot.sendMessage(msg.chat.id, `[${getBadges(userstate)} ${userstate['display-name']}]: ${message}`)
         })
   });
@@ -44,7 +43,12 @@ function interval(){
   }
 
   function getBadges(userstate){
-    Object.keys(userstate.badges).forEach(badge => badgesEmoji[badge])
+    let badges = "";
+    let arr = Object.keys(userstate.badges);
+    for (let i=0; i < arr; i++){
+      if (arr[i]) badges += badgesEmoji[i];
+    }
+    return badges;
   }
 
   bot.onText(/tormozi/ig, (msg) => {
