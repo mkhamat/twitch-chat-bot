@@ -44,13 +44,14 @@ function interval(){
 
   function getBadges(userstate){
     let badges = "";
-    let arr = Object.keys(userstate.badges);
-    for (let i=0; i < arr; i++){
-      if (arr[i]) badges += badgesEmoji[i];
+    let arr = Object.keys(userstate.badges) || {};
+    for (let i=0; i < arr.length; i++){
+      if (arr[i]) {
+        badges += badgesEmoji[arr[i]]
+      }
     }
     return badges;
   }
-
   bot.onText(/tormozi/ig, (msg) => {
     clearInterval(awake);
     client.removeAllListeners('chat');
