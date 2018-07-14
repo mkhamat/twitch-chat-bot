@@ -26,7 +26,8 @@ function interval(){
   }, 1500000)
 }
   bot.onText(/zavodi/ig, (msg) => {
-        if (msg.from.id != 472396472 || msg.from.id != 386643105) return;
+        if (msg.from.id != 472396472) return;
+        if (msg.from.id != 386643105) return;
         if (client.readyState() == 'OPEN' || client.readyState() == 'CONNECTING') return;
         client.connect();
         interval();
