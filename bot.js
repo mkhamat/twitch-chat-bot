@@ -26,15 +26,13 @@ function interval(){
   }, 1500000)
 }
   bot.onText(/zavodi/ig, (msg) => {
-        // if (msg.from.id != 472396472) return;
-        // if (msg.from.id != 386643105) return;
+        if (msg.from.id != 472396472 && msg.from.id != 386643105) return;
         if (client.readyState() == 'OPEN' || client.readyState() == 'CONNECTING') return;
         client.connect();
         interval();
         client.on("chat", function (channel, userstate, message, self) {
           if (self) return;
-          console.log(userstate['display-name']+": " + Object.keys(userstate.badges)
-          .forEach(bagde => {return badge}));
+          Object.keys(userstate.badges).forEach(badge => console.log(userstate['display-name'] + ": "+badge))
           bot.sendMessage(msg.chat.id, `[${userstate['display-name']}]: ${message}`)
         })
   });
