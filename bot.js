@@ -25,6 +25,8 @@ function interval(){
   }, 1500000)
 }
   bot.onText(/\/start/ig, (msg) => {
+        console.log(msg.from.id+ " from id")
+        console.log(msg.chat.id+" chat id")
         if (client.readyState() == 'OPEN' || client.readyState() == 'CONNECTING') return;
         client.connect();
         interval();
