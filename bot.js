@@ -11,8 +11,8 @@ const client = require('tmi.js').client(
     connection: {
         reconnect: true
     },
-    // channels: ["santiwwwwww"]
-    channels: ["solaryfortnite"]
+    channels: ["santiwwwwww"]
+    // channels: ["solaryfortnite"]
 }
 );
 bot.setWebHook(`${process.env.APP_URL}/bot${process.env.TOKEN}`);
@@ -32,18 +32,20 @@ function interval(){
         interval();
         client.on("chat", function (channel, userstate, message, self) {
           if (self) return;
-          Object.keys(userstate.badges).forEach(badge => console.log(userstate['display-name'] + ": "+badge))
-          bot.sendMessage(msg.chat.id, `[${userstate['display-name']}]: ${message}`)
+          bot.sendMessage(msg.chat.id, `[${getBadges(userstate)} ${userstate['display-name']}]: ${message}`)
         })
   });
 
-  // var badges = {
-    
-  // }
+  var badgesEmoji = {
+    moderator: "💚",
+    subscriber: "✡",
+    premium: "👑",
+    broadcaster: "🔴"
+  }
 
-  // function getBadges(userstate){
-  //   Object.keys(userstate.badges).map()
-  // }
+  function getBadges(userstate){
+    return Object.keys(userstate.badges).forEach(badge => badgesEmoji[badge])
+  }
 
   bot.onText(/tormozi/ig, (msg) => {
     clearInterval(awake);
