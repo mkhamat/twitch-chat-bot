@@ -31,7 +31,7 @@ function interval(){
         client.connect();
         interval();
         client.on("chat", function (channel, userstate, message) {
-          bot.sendMessage(msg.chat.id, `[${getBadges(userstate)} ${userstate['display-name']}]: ${message}`)
+          bot.sendMessage(msg.chat.id, `${getBadges(userstate)}[${userstate['display-name']}]: ${message}`)
         })
   });
 
