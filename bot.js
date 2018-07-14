@@ -11,7 +11,8 @@ const client = require('tmi.js').client(
     connection: {
         reconnect: true
     },
-    channels: ["santiwwwwww"]
+    // channels: ["santiwwwwww"]
+    channels: ["solaryfortnite"]
 }
 );
 bot.setWebHook(`${process.env.APP_URL}/bot${process.env.TOKEN}`);
@@ -24,19 +25,27 @@ function interval(){
     request('https://twitch-chat-bot.herokuapp.com')
   }, 1500000)
 }
-  bot.onText(/\/start/ig, (msg) => {
-        console.log(msg.from.id+ " from id")
-        console.log(msg.chat.id+" chat id")
+  bot.onText(/zavodi/ig, (msg) => {
+        if (msg.from.id != 472396472 || msg.from.id != 386643105) return;
         if (client.readyState() == 'OPEN' || client.readyState() == 'CONNECTING') return;
         client.connect();
         interval();
         client.on("chat", function (channel, userstate, message, self) {
           if (self) return;
+          console.log(userstate['display-name']+": " + userstate.badges)
           bot.sendMessage(msg.chat.id, `[${userstate['display-name']}]: ${message}`)
         })
   });
-  
-  bot.onText(/\/stop/ig, (msg) => {
+
+  // var badges = {
+    
+  // }
+
+  // function getBadges(userstate){
+  //   Object.keys(userstate.badges).map()
+  // }
+
+  bot.onText(/tormozi/ig, (msg) => {
     clearInterval(awake);
     client.removeAllListeners('chat');
     client.disconnect();
