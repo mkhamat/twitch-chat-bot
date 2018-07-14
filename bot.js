@@ -44,7 +44,7 @@ function interval(){
   }
 
   function getBadges(userstate){
-    return Object.keys(userstate.badges).forEach(badge => badgesEmoji[badge])
+    Object.keys(userstate.badges).forEach(badge => badgesEmoji[badge])
   }
 
   bot.onText(/tormozi/ig, (msg) => {
